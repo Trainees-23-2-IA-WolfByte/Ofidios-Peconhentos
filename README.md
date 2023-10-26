@@ -45,8 +45,8 @@ print(resultado)
 
 ### Membros envolvidos no treinamento
 
-- **Dannylo** : *Líder da Equipe I.A - WolfByte* : Assessor Técnico do Ramo
-- **Maria Luisa** - *Líder do Processo Seletivo IEEE* : Assessor de Gestão do Ramo
+- **Maria Luisa** - *Líder do Processo Seletivo IEEE* : Assessora de Gestão
+- **Dannylo** - *Líder da Equipe I.A WolfByte* : Assessor Técnico
 
 ---
 
