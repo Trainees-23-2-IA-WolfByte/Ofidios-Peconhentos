@@ -43,10 +43,10 @@ print(resultado)
 - [Caio Passos Torkst Ferreira](https://github.com/stepsbtw)
 - Guilherme Soares Vieira
 
-### Membros do Ramo envolvidos no treinamento
+### Membros envolvidos no treinamento
 
-- **Dannylo** : *Líder da Equipe I.A - WolfByte*
-- **Maria Luisa** : *Líder do Processo Seletivo IEEE*
+- **Dannylo** : *Líder da Equipe I.A - WolfByte* : Assessor Técnico do Ramo
+- **Maria Luisa** - *Líder do Processo Seletivo IEEE* : Assessor de Gestão do Ramo
 
 ---
 
