@@ -1,69 +1,31 @@
 import os
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
-import os
 import cv2
-import numpy as np
-from PIL import Image as img
-import numpy as np
-from matplotlib import pyplot as plt
-os.path.join("Ofídios-Peconhentos")
-imgs = []
+from PIL import Image as im
 
-def adicionar_especie(especie,classificacao,path,imgs):
-    for img_name in os.listdir(path):
-        if img_name.endswith('.jpeg'):
-            imgs.append(img.open(os.path.join(path,img_name)))
-        elif img_name.endswith('.png'):
-            imgs.append(img.open(os.path.join(path,img_name)))
-        elif img_name.endswith('.jpg'):
-            imgs.append(img.open(os.path.join(path,img_name)))
-        else: print("error")
+def adicionar_especie(especie,classificacao,path,img_dict):
+    for img_path in os.listdir(path):
+        if img_path.endswith('.jpeg') or img_path.endswith('.png') or img_path.endswith('.jpg'):
+            image = im.open(img_path)  # abre a imagem
+            image = image.convert('L') # transforma greyscale
+            image = np.array(image) # transforma em array de pixels ( 0 a 255 )
+            image = cv2.resize(image, (150,150))  # redimensiona a imagem ( 150 x 150 ) 
+            image = map(lambda pixel: pixel/255,image) # transforma os pixels em um numero de 0 a 1
+            img_dict[classificacao][especie] = image # labels
 
 def main():
-     adicionar_especie('surucucu','peconhenta', "database/peconhentas/Jararacuçu (Bothrops jararacussu)",imgs)
-     adicionar_especie('jararacucu','peconhenta', "database/peconhentas/Jararacuçu(Bothrops jararacussu)",imgs)
-    adicionar_especie('urutu','peconhenta', "database/peconhentas/bothrups-alternatus",imgs)
-    adicionar_especie('cascavel','peconhenta',"database/peconhentas/Cascavel (Crotalus durissus)",imgs)
-    adicionar_especie('jararaca','peconhenta',"database/peconhentas/Jararaca (Bothrops jararaca)_Venomous",imgs)
-    adicionar_especie('coral-verdadeira','peconhenta', "database/peconhentas/Jararacuçu (Bothrops jararacussu)",imgs)
-    adicionar_especie('cobra-verde','peconhenta', "database/peconhentas/micrurus-frontalis",imgs)
-    adicionar_especie('cobra-dagua','peconhenta',"database/peconhentas/Surucucu (Lachesis muta)",imgs)
-    adicionar_especie('jiboia','nao_peconhenta',"database/nao-peconhentas/Jiboia(Boa constrictor)",imgs)
-    adicionar_especie('cobra-cega','nao_peconhenta',"database/nao-peconhentas/typhlops-brongersmianus",imgs)
-    adicionar_especie('cobra-cipo','nao_peconhenta',"database/nao-peconhentas/Cobra-Cipó",imgs)
-    adicionar_especie('cobra-de-vidro','nao_peconhenta',"database/nao-peconhentas/Cobra-de-Vidro",imgs)
-    imgs[0].show()
+    img_dict = {}
+    adicionar_especie('surucucu','peconhenta', "database/peconhentas/Surucucu (Lachesis muta)",img_dict)
+    adicionar_especie('jararacucu','peconhenta', "database/peconhentas/Jararacuçu (Bothrops jararacussu)",img_dict)
+    adicionar_especie('urutu','peconhenta', "database/peconhentas/bothrups-alternatus",img_dict)
+    adicionar_especie('cascavel','peconhenta',"database/peconhentas/Cascavel (Crotalus durissus)",img_dict)
+    adicionar_especie('jararaca','peconhenta',"database/peconhentas/Jararaca (Bothrops jararaca)_Venomous",img_dict)
+    adicionar_especie('coral-verdadeira','peconhenta', "database/peconhentas/micrurus-frontalis",img_dict)
+    adicionar_especie('cobra-verde','nao_peconhenta', "database/nao_peconhentas/Cobra Verde(Philodryas ofersii)",img_dict)
+    adicionar_especie('cobra-dagua','nao_peconhenta',"database/nao_peconhentas/helicops-danieli",img_dict)
+    adicionar_especie('jiboia','nao_peconhenta',"database/nao-peconhentas/Jiboia(Boa constrictor)",img_dict)
+    adicionar_especie('cobra-cega','nao_peconhenta',"database/nao-peconhentas/typhlops-brongersmianus",img_dict)
+    adicionar_especie('cobra-cipo','nao_peconhenta',"database/nao-peconhentas/Cobra-Cipó",img_dict)
+    adicionar_especie('cobra-de-vidro','nao_peconhenta',"database/nao-peconhentas/Cobra-de-Vidro",img_dict)
 
 main()
-pic1 = imgs[0]
-pic1_array = np.array(pic1)
-pic1_array = cv2.resize(pic1_array, (150, 150))
-pic1 = img.fromarray(pic1_array)
-pic1.show()
-
-
-
-
-def load_and_preprocess_image(image_path, target_size):
-    image = cv2.imread(image_path)
-    if image is not None:
-        image = cv2.resize(image, target_size)
-        image = image / 255.0  # Normalize the pixel values
-        return image
-    else:
-        return None
-image_path = "path/to/your/image.jpg"
-target_size = (150, 150)
-processed_image = load_and_preprocess_image(image_path, target_size)
-
-if processed_image is not None:
-    cv2.imshow("Preprocessed Image", processed_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-else:
-    print("Image not found or unable to load.")
-
