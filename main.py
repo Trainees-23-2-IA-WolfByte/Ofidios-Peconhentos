@@ -24,14 +24,18 @@ def adicionar_especie(especie,classificacao,path,imgs):
         else: print("error")
 
 def main():
+     adicionar_especie('surucucu','peconhenta', "database/peconhentas/Jararacuçu (Bothrops jararacussu)",imgs)
+     adicionar_especie('jararacucu','peconhenta', "database/peconhentas/Jararacuçu(Bothrops jararacussu)",imgs)
     adicionar_especie('urutu','peconhenta', "database/peconhentas/bothrups-alternatus",imgs)
     adicionar_especie('cascavel','peconhenta',"database/peconhentas/Cascavel (Crotalus durissus)",imgs)
     adicionar_especie('jararaca','peconhenta',"database/peconhentas/Jararaca (Bothrops jararaca)_Venomous",imgs)
     adicionar_especie('coral-verdadeira','peconhenta', "database/peconhentas/Jararacuçu (Bothrops jararacussu)",imgs)
     adicionar_especie('cobra-verde','peconhenta', "database/peconhentas/micrurus-frontalis",imgs)
     adicionar_especie('cobra-dagua','peconhenta',"database/peconhentas/Surucucu (Lachesis muta)",imgs)
-    adicionar_especie('jiboia','peconhenta',"database/nao-peconhentas/Jiboia(Boa constrictor)",imgs)
-    adicionar_especie('cobra-cega','peconhenta',"database/nao-peconhentas/typhlops-brongersmianus",imgs)
+    adicionar_especie('jiboia','nao_peconhenta',"database/nao-peconhentas/Jiboia(Boa constrictor)",imgs)
+    adicionar_especie('cobra-cega','nao_peconhenta',"database/nao-peconhentas/typhlops-brongersmianus",imgs)
+    adicionar_especie('cobra-cipo','nao_peconhenta',"database/nao-peconhentas/Cobra-Cipó",imgs)
+    adicionar_especie('cobra-de-vidro','nao_peconhenta',"database/nao-peconhentas/Cobra-de-Vidro",imgs)
     imgs[0].show()
 
 main()
