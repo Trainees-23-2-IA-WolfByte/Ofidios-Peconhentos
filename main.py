@@ -15,7 +15,7 @@ def main():
     DADOS = Dados("database") # importar dados
 
     #criar novo modelo, treiná-lo e salvar:
-    Novo_Modelo(DADOS.dataset_treino,DADOS.dataset_validacao,DADOS.dataset_teste)
+    #Novo_Modelo(DADOS.dataset_treino,DADOS.dataset_validacao,DADOS.dataset_teste)
     
     MODELO = load_model(os.path.join('Modelos','modelo1.h5')) #importar o modelo treinado
     Debug.batch_test(MODELO, DADOS.dataset_teste) # USANDO OS BATCHS DE TESTE
