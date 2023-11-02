@@ -29,7 +29,7 @@ print(resultado)
 
 - Python, Jupyter Notebook
 - Google Colab
-- Bibliotecas (numpy, tensorflow, keras, scikit-learn)
+- Bibliotecas (numpy, tensorflow, keras)
 
   ### Boas Práticas de Programação
   Todo código deve seguir os padrões de boas práticas, como os ensinados no livro "Clean Code" - Robert C. Martin. Isso inclui:
