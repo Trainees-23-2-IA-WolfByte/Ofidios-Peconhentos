@@ -4,6 +4,9 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.preprocessing import image
+from tensorflow.keras.metrics import Precision, Recall, BinaryAccuracy
+from tensorflow.keras.models import load_model
+
 # configura a alocação de memória para as GPUs
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
@@ -60,17 +63,19 @@ def main():
     dataset_treino, dataset_val, dataset_test = separar_dados(dataset)  # separa o conjunto de dados
 
     # criação do modelo Sequential para classificação de serpentes peçonhentas
+    
     model = Sequential([
-        Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
-        MaxPooling2D(2, 2),
-        Conv2D(64, (3, 3), activation='relu'),
-        MaxPooling2D(2, 2),
-        Conv2D(128, (3, 3), activation='relu'),
-        MaxPooling2D(2, 2),
+        Conv2D(32, (3, 3),1, activation='relu', input_shape=(150,150,3)),
+        MaxPooling2D(),
+        Conv2D(64, (3, 3),1, activation='relu'),
+        MaxPooling2D(),
+        Conv2D(32, (3, 3),1, activation='relu'),
+        MaxPooling2D(),
         Flatten(),
-        Dense(128, activation='relu'),
+        Dense(150, activation='relu'),
         Dense(1, activation='sigmoid')
     ])
+    
 
     # compilação do modelo com parâmetros adequados para treinamento
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -78,17 +83,40 @@ def main():
     # treinamento do modelo com os conjuntos de dados
     model.fit(dataset_treino, validation_data=dataset_val, epochs=12)
 
+    print(model.summary())
+
+    model.save(os.path.join('modelos')('modelo1.h5'))
+
+    precision = Precision()
+    recall = Recall()
+    accuracy = BinaryAccuracy()
+    for test_batch in dataset_test.as_numpy_iterator():
+        x,y = test_batch
+        predictions = model.predict(x)
+        precision.update_state(y,predictions)
+        recall.update_state(y,predictions)
+        accuracy.update_state(y,predictions)
+
+    print(f'''
+        Precisão: {precision.result().numpy()},
+        Acurácia: {accuracy.result().numpy()}
+        '''
+    )
+    
+    img_path = 'teste.png'
+    img = image.load_img(img_path, target_size=(150, 150))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    print(img_array.shape)
+    img_array = img_array / 255
+    prediction = model.predict(img_array)
+    print(prediction)
+    if prediction < 0.5:
+        print("Não é uma serpente peçonhenta.")
+    else:
+        print("É uma serpente peçonhenta.")
+
+
 main()
 
 
-
-img_path = 'C:/Users/lanzi/OneDrive/Área de Trabalho/teste1.jpg'
-img = image.load_img(img_path, target_size=(150, 150))
-img_array = image.img_to_array(img)
-img_array = np.expand_dims(img_array, axis=0)
-img_array = img_array / 255.0
-prediction = model.predict(img_array)
-if prediction < 0.5:
-    print("Não é uma serpente peçonhenta.")
-else:
-    print("É uma serpente peçonhenta.")
