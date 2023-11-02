@@ -6,8 +6,8 @@ Usando técnicas de visão computacional, o objetivo principal é desenvolver e 
 ## Funcionalidades
 
 - [X] Desenvolvimento de um conjunto de dados com 4 a 10 diferentes espécies de cobras, sendo metade peçonhenta e metade não peçonhenta.
-- [ ] Treinamento de um modelo de inteligência artificial para classificação das serpentes com uma precisão mínima de 75%.
-- [ ] Implementação de uma função que recebe uma imagem de um ofídio e retorna se ele é peçonhento ou não.
+- [X] Treinamento de um modelo de inteligência artificial para classificação das serpentes com uma precisão mínima de 75%.
+- [X] Implementação de uma função que recebe uma imagem de um ofídio e retorna se ele é peçonhento ou não.
 
 ## Bônus (Opcional)
 
