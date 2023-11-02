@@ -62,4 +62,4 @@ class Novo_Modelo():
         self.model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
         # treinamento do modelo com os conjuntos de dados
         self.model.fit(self.dataset_treino, validation_data=self.dataset_validacao, epochs=12)
-        self.model.save(os.path.join('Modelos','modelo1.h5'))
+        self.model.save(os.path.join('Modelos','modelo_teste.h5'))
