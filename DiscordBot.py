@@ -1,20 +1,23 @@
 import discord
 from discord.ext import commands
-from tensorflow.keras.preprocessing import image
-import numpy as np
-import os
 import tensorflow as tf
-import modelo1.h5 from Modelos
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
+import numpy as np
+import json
+
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
-intents.guilds = True
+intents.guild = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 model_path = r'Modelos/modelo1.h5'
-token = 'MTE2OTk5NzQwNDMzNDk5MzQ3MQ.GUt73k.jRtyprxJc2TpdIFIHTjbG-rjEQs-wqvXSr-rSA'
 
 modelo = tf.keras.models.load_model(model_path)
+
+with open('config.json', 'r') as cfg:
+    data = json.load(cfg)
 
 @bot.event
 async def on_ready():
@@ -50,5 +53,5 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandError):
         await ctx.send(error)
 
-bot.run(token)
+bot.run(data["token"])
 
