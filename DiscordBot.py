@@ -5,6 +5,7 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import numpy as np
 import json
+import os
 
 intents = discord.Intents.default()
 intents.messages = True
