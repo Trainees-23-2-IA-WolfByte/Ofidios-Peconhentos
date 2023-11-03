@@ -1,21 +1,20 @@
 import discord
 from discord.ext import commands
-import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
-import numpy as np
+from numpy import expand_dims
 import json
 import os
 
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
-intents.guild = True
+intents.guilds = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 model_path = r'Modelos/modelo1.h5'
 
-modelo = tf.keras.models.load_model(model_path)
+modelo = load_model(model_path)
 
 with open('config.json', 'r') as cfg:
     data = json.load(cfg)
@@ -37,7 +36,7 @@ async def check(ctx):
 
             img = image.load_img(image_path, target_size=(150, 150))
             img_array = image.img_to_array(img)
-            img_array = np.expand_dims(img_array, axis=0)
+            img_array = expand_dims(img_array, axis=0)
             img_array = img_array / 255
             prediction = modelo.predict(img_array)
 
