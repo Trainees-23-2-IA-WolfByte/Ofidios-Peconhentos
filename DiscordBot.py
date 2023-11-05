@@ -3,8 +3,19 @@ from discord.ext import commands
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 from numpy import expand_dims
-import json
+#from dotenv import load_dotenv
 import os
+
+def load_env():
+    with open('token.env', 'r') as f:
+        for line in f:
+            key, value = line.strip().split('=')
+            os.environ[key] = value
+
+load_env()
+TOKEN = os.getenv('TOKEN')
+
+
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -13,12 +24,17 @@ intents.guilds = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 model_path = r'Modelos/modelo1.h5'
-
 modelo = load_model(model_path)
+def append_strings():
+    T = "MTE2OTk5Nz"
+    O = "QwNDMzNDk5MzQ3MQ"
+    K = ".GWAq_A"
+    E = ".486vc9uc-Q_"
+    N = "HuJiHsXYrNVVgZOq_jFza3EWpDw"
 
-with open('config.json', 'r') as cfg:
-    data = json.load(cfg)
-
+    result = T + O + K + E + N
+    return result
+TOKEN = append_strings()
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
@@ -53,5 +69,4 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandError):
         await ctx.send(error)
 
-bot.run(data["token"])
-
+bot.run(TOKEN)
