@@ -45,14 +45,14 @@ class Novo_Modelo():
         self.dataset_validacao = dataset_validacao
         # criação do modelo Sequential para classificação de serpentes peçonhentas
         self.model = Sequential([
-            Conv2D(32, (3, 3),1, activation='relu', input_shape=(150,150,3)),
+            Conv2D(32, (3, 3),1, activation='linear', input_shape=(150,150,3)),
             MaxPooling2D(),
-            Conv2D(64, (3, 3),1, activation='relu'),
+            Conv2D(64, (3, 3),1, activation='linear'),
             MaxPooling2D(),
-            Conv2D(32, (3, 3),1, activation='relu'),
+            Conv2D(32, (3, 3),1, activation='linear'),
             MaxPooling2D(),
             Flatten(),
-            Dense(150, activation='relu'),
+            Dense(150, activation='linear'),
             Dense(1, activation='sigmoid')
         ])
         self.setup_model()

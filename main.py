@@ -17,13 +17,16 @@ def main():
     #criar novo modelo, treiná-lo e salvar:
     #Novo_Modelo(DADOS.dataset_treino,DADOS.dataset_validacao,DADOS.dataset_teste)
     
-    MODELO = load_model(os.path.join('Modelos','modelo1.h5')) #importar o modelo treinado
+    MODELO = load_model(os.path.join('Modelos','modelo_teste.h5')) #importar o modelo treinado
     Debug.batch_test(MODELO, DADOS.dataset_teste) # USANDO OS BATCHS DE TESTE
-    Debug.image_test(MODELO, "teste.png","nao-peconhenta") # USANDO IMAGEM DE TESTE
+    Debug.image_test(MODELO, "TESTE/dormedorme1.jpg",label='peconhenta') # USANDO IMAGEM DE TESTE
+    Debug.image_test(MODELO, "TESTE/dormedorme2.jpg",label='peconhenta')
+    Debug.image_test(MODELO, "TESTE/dormedorme3.jpeg",label='peconhenta')
+    Debug.image_test(MODELO, "TESTE/dormedorme4.jpg",label='peconhenta')
+    Debug.image_test(MODELO, "TESTE/cobrareal.jpg",label='peconhenta')
+    Debug.image_test(MODELO, "TESTE/cobrareal2.jpg",label='peconhenta')
+    Debug.image_test(MODELO, "TESTE/king.jpg",label='peconhenta')
+    Debug.image_test(MODELO, "TESTE/teste.png",label='peconhenta')
+
 
 main()
-
-    
-
-
-    

@@ -16,6 +16,9 @@ def batch_test(modelo,dataset_teste):
     print(f'''
     Precisão: {precision.result().numpy()},
     Acurácia: {accuracy.result().numpy()}''')
+    modelo.evaluate(dataset_teste)
+    
+
 
 # funcao para testar uma nova imagem nunca vista antes pelo modelo.
 def image_test(modelo,image_path,label):
@@ -27,14 +30,14 @@ def image_test(modelo,image_path,label):
     print(f'A previsão foi: {prediction}\n')
     if prediction < 0.5:
         print("Não é uma serpente peçonhenta.\n")
-        resposta = 'peconhenta' 
+        resposta = 'nao-peconhenta' 
         if resposta == label:
             print("A i.a acertou!\n")
         else:
             print("A i.a errou!\n")
     else:
         print("É uma serpente peçonhenta.\n")
-        resposta = 'nao-peconhenta'
+        resposta = 'peconhenta'
         if resposta == label:
             print("A i.a acertou!\n")
         else:
