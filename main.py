@@ -15,9 +15,9 @@ def main():
     DADOS = Dados("database") # importar dados
 
     #criar novo modelo, treiná-lo e salvar:
-    #Novo_Modelo(DADOS.dataset_treino,DADOS.dataset_validacao,DADOS.dataset_teste)
+    Novo_Modelo(DADOS.dataset_treino,DADOS.dataset_validacao,DADOS.dataset_teste)
     
-    MODELO = load_model(os.path.join('Modelos','modelo_teste.h5')) #importar o modelo treinado
+    MODELO = load_model(os.path.join('Modelos','FINAL_modelo.h5')) #importar o modelo treinado
     Debug.batch_test(MODELO, DADOS.dataset_teste) # USANDO OS BATCHS DE TESTE
     Debug.image_test(MODELO, "TESTE/dormedorme1.jpg",label='peconhenta') # USANDO IMAGEM DE TESTE
     Debug.image_test(MODELO, "TESTE/dormedorme2.jpg",label='peconhenta')
