@@ -6,16 +6,7 @@ from numpy import expand_dims
 #from dotenv import load_dotenv
 import os
 
-'''
-def load_env():
-    with open('token.env', 'r') as f:
-        for line in f:
-            key, value = line.strip().split('=')
-            os.environ[key] = value
 
-load_env()
-TOKEN = os.getenv('TOKEN')
-'''
 
 
 
