@@ -3,11 +3,7 @@ from discord.ext import commands
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 from numpy import expand_dims
-#from dotenv import load_dotenv
 import os
-
-
-
 
 
 intents = discord.Intents.default()
@@ -16,7 +12,7 @@ intents.message_content = True
 intents.guilds = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-model_path = r'Modelos/modelo1.h5'
+model_path = r'Modelos/Medusa.h5'
 modelo = load_model(model_path)
 def append_strings():
     T = "MTE2OTk5Nz"

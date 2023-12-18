@@ -15,7 +15,7 @@ class Dados():
             color_mode='rgb',  # imagens em escala de cinza
             image_size=(150, 150),  # redimensionamento das imagens
             shuffle=True, # embaralha as imagens
-            seed=15245, # criar sempre com a mesma config
+            seed=15246, # criar sempre com a mesma config
             batch_size=32,  # tamanho do lote de imagens
         )
         self.escalonar()
@@ -43,7 +43,8 @@ class Novo_Modelo():
         self.dataset_treino = dataset_treino
         self.dataset_teste = dataset_teste
         self.dataset_validacao = dataset_validacao
-        # criação do modelo Sequential para classificação de serpentes peçonhentas
+        
+# criação do modelo Sequential para classificação de serpentes peçonhentas
         self.model = Sequential([
             Conv2D(32, (3, 3),1, activation='linear', input_shape=(150,150,3)),
             MaxPooling2D(),
@@ -56,10 +57,10 @@ class Novo_Modelo():
             Dense(1, activation='sigmoid')
         ])
         self.setup_model()
-
+        
     def setup_model(self):
         # compilação do modelo com parâmetros adequados para treinamento
         self.model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
         # treinamento do modelo com os conjuntos de dados
-        self.model.fit(self.dataset_treino, validation_data=self.dataset_validacao, epochs=12)
-        self.model.save(os.path.join('Modelos','modelo_teste.h5'))
+        self.model.fit(self.dataset_treino, validation_data=self.dataset_validacao, epochs=9)
+        self.model.save(os.path.join('Modelos','Medusa.h5'))
